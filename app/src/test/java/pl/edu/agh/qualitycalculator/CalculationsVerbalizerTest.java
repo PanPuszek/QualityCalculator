@@ -6,7 +6,7 @@ import org.junit.Test;
 import static junit.framework.Assert.assertEquals;
 
 /**
- * Created by kartasin on 1/13/18.
+ * Created by kartasin on 1/13/18. 
  */
 
 public class CalculationsVerbalizerTest {
