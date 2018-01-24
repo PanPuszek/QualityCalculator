@@ -12,6 +12,7 @@ import pl.edu.agh.qualitycalculator.R;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
+    EditText etNum;
     EditText etNum1;
     EditText etNum2;
 
@@ -19,6 +20,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     Button btnSub;
     Button btnMult;
     Button btnDiv;
+    Button btnAvg;
 
     TextView tvResult;
 
@@ -30,6 +32,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        etNum = (EditText) findViewById(R.id.etNum);
         etNum1 = (EditText) findViewById(R.id.etNum1);
         etNum2 = (EditText) findViewById(R.id.etNum2);
 
@@ -37,6 +40,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btnSub = (Button) findViewById(R.id.btnSub);
         btnMult = (Button) findViewById(R.id.btnMult);
         btnDiv = (Button) findViewById(R.id.btnDiv);
+        btnAvg = (Button) findViewById(R.id.btnAvg);
 
         tvResult = (TextView) findViewById(R.id.tvResult);
 
@@ -44,15 +48,18 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btnSub.setOnClickListener(this);
         btnMult.setOnClickListener(this);
         btnDiv.setOnClickListener(this);
+        btnAvg.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        if (TextUtils.isEmpty(etNum1.getText().toString())
+        if (TextUtils.isEmpty(etNum.getText().toString())
+                || TextUtils.isEmpty(etNum1.getText().toString())
                 || TextUtils.isEmpty(etNum2.getText().toString())) {
             tvResult.setText("Enter some data to calculate");
             return;
         }
+
 
         Operation selectedOperation = null;
         switch (v.getId()) {
@@ -68,15 +75,20 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.btnDiv:
                 selectedOperation = Operation.DIVIDE;
                 break;
+            case R.id.btnAvg:
+                selectedOperation = Operation.AVERAGE;
+                break;
             default:
                 break;
         }
 
+        float num = Float.parseFloat(etNum.getText().toString());
         float num1 = Float.parseFloat(etNum1.getText().toString());
         float num2 = Float.parseFloat(etNum2.getText().toString());
+
         try {
-            float result = calculations.calculate(selectedOperation, num1, num2);
-            String verbalizedOperation = verbalizer.verbalize(selectedOperation, num1, num2, result);
+            float result = calculations.calculate(selectedOperation, num, num1, num2);
+            String verbalizedOperation = verbalizer.verbalize(selectedOperation, num, num1, num2, result);
             tvResult.setText(verbalizedOperation);
         }
         catch (Exception ex) {
