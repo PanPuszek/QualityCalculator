@@ -77,7 +77,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.btnAvg:
                 selectedOperation = Operation.AVERAGE;
-                break;
             default:
                 break;
         }
@@ -93,7 +92,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
         catch (Exception ex) {
             tvResult.setText("An error ocurred: " + ex.toString());
-        };
+        }
 
     }
 }

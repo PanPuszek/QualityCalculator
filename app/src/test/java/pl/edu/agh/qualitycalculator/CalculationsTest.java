@@ -19,22 +19,27 @@ public class CalculationsTest {
 
     @Test
     public void testSum() throws Exception {
-        assertEquals(3.99, calculationsUnderTest.calculate(Operation.SUM, (float)1.33, (float)2.66), 0.01);
+        assertEquals((float)3.99, calculationsUnderTest.calculate(Operation.SUM, (float)1.33, (float)2.66, (float)0), 0.01);
     }
 
     @Test
     public void testSubtract() throws Exception {
-        assertEquals(6, calculationsUnderTest.calculate(Operation.SUBTRACT, 18, 12), 0.01);
+        assertEquals(-16, calculationsUnderTest.calculate(Operation.SUBTRACT, 2,18, 0), 0.01);
     }
 
     @Test
     public void testMultiply() throws Exception {
-        assertEquals(16, calculationsUnderTest.calculate(Operation.MULTIPLY, 4,4), 0.01);
+        assertEquals(8, calculationsUnderTest.calculate(Operation.MULTIPLY, 2,4,4), 0.01);
     }
 
     @Test
     public void testDivide() throws Exception {
-        assertEquals(3,calculationsUnderTest.calculate(Operation.DIVIDE, 27,9), 0.01);
+        assertEquals(3,calculationsUnderTest.calculate(Operation.DIVIDE, 27,9,9), 0.01);
+    }
+
+    @Test
+    public void testAverage() throws Exception {
+        assertEquals(3,calculationsUnderTest.calculate(Operation.AVERAGE, 2,3,4), 0.01);
     }
 
     @After
